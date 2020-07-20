@@ -37,7 +37,6 @@ public class ReactiveUserRepository implements ReactiveRepository<User> {
 		this.users = new ArrayList<>(Arrays.asList(users));
 	}
 
-
 	@Override
 	public Mono<Void> save(Publisher<User> userPublisher) {
 		return withDelay(Flux.from(userPublisher)).doOnNext(users::add).then();
